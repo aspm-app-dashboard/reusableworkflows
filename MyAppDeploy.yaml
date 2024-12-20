@@ -15,7 +15,7 @@ on:
         required: true
 jobs:
   pre-prod:
-    if: ${{ inputs.environment }} == "pre-prod"
+    #if: ${{ inputs.environment }} == "pre-prod"
     environment: pre-prod
     steps:
       - name: deploy
@@ -32,7 +32,7 @@ jobs:
           version: "${{ inputs.artifactVersion }}"
           url: "docker.io/MyApp/${{ inputs.artifactName }}:${{ inputs.artifactVersion }}"
   prod:
-    if: ${{ inputs.environment }} == "prod"
+    #if: ${{ inputs.environment }} == "prod"
     environment: prod
     steps:
       - name: deploy

@@ -33,7 +33,7 @@ jobs:
           url: "docker.io/MyApp/${{ inputs.artifactName }}:${{ inputs.artifactVersion }}"
   prod:
     if: ${{ inputs.environment }} == "prod"
-    environment: pre-prod
+    environment: prod
     steps:
       - name: deploy
         uses: docker://golang:1.20.3-alpine3.17

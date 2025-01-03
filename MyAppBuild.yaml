@@ -8,7 +8,7 @@ on:
         type: string
         required: true
       baseVersion:
-        types: string
+        type: string
         required: true
 jobs:
   build:

@@ -32,7 +32,7 @@ jobs:
           url: "docker.io/MyApp/${{ inputs.artifactName }}:${{ inputs.artifactVersion }}"
   prod:
     if: inputs.environment == 'prod'
-    environment: prod
+    environment: pre-prod
     steps:
       - name: Inform system that an artifact version was deployed
         uses: cloudbees-io/register-deployed-artifact@v1

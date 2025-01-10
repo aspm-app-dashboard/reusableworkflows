@@ -22,7 +22,7 @@ on:
 jobs:
   pre-prod:
     if: inputs.environment == 'pre-prod'
-    environment: prod
+    environment: pre-prod
     steps:
       - name: Inform system that an artifact version was deployed
         uses: cloudbees-io/register-deployed-artifact@v1

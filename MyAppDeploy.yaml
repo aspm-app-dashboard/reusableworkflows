@@ -20,19 +20,7 @@ on:
         type: string
         required: false
 jobs:
-  pre-prod:
-    if: inputs.environment == 'pre-prod'
-    environment: pre-prod
-    steps:
-      - name: Inform system that an artifact version was deployed
-        uses: cloudbees-io/register-deployed-artifact@v1
-        with:
-          name: "${{ inputs.artifactName }}"
-          version: "${{ inputs.artifactVersion }}"
-          url: "docker.io/MyApp/${{ inputs.artifactName }}:${{ inputs.artifactVersion }}"
-  prod:
-    if: inputs.environment == 'prod'
-    environment: prod
+  deploy:
     steps:
       - name: Inform system that an artifact version was deployed
         uses: cloudbees-io/register-deployed-artifact@v1

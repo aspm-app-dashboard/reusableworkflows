@@ -29,3 +29,4 @@ jobs:
           name: "${{ inputs.artifactName }}"
           version: "${{ inputs.artifactVersion }}"
           url: "docker.io/MyApp/${{ inputs.artifactName }}:${{ inputs.artifactVersion }}"
+          target-environment: "${{ inputs.environment }}"

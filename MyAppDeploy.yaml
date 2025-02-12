@@ -24,7 +24,7 @@ jobs:
   deploy:
     steps:
       - name: Inform system that an artifact version was deployed
-        uses: cloudbees-io/register-deployed-artifact
+        uses: cloudbees-io/register-deployed-artifact@v1
         with:
           name: "${{ inputs.artifactName }}"
           version: "${{ inputs.artifactVersion }}"

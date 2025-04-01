@@ -10,6 +10,9 @@ on:
       baseVersion:
         type: string
         required: true
+      digest:
+        type: string
+        required: false
 jobs:
   build:
     steps:
@@ -19,4 +22,4 @@ jobs:
           name: "${{ inputs.artifactName }}"
           version: "${{inputs.baseVersion}}-${{cloudbees.version}}"
           url: "docker.io/MyApp/${{ inputs.artifactName }}:${{inputs.baseVersion}}-${{cloudbees.version}}"
-          #digest: "sha256:5e0fa16466150c58f628dc6e6c40a9b07e3b3609d"
+          digest: "${{ inputs.digest }}"

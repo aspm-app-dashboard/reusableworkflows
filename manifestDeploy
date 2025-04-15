@@ -7,7 +7,7 @@ on:
       manifest:
         type: string
         required: true
-      envrionment:
+      environment:
         type: string
         required: true
 jobs:

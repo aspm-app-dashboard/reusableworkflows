@@ -7,6 +7,9 @@ on:
       manifest:
         type: string
         required: true
+      envrionment:
+        type: string
+        required: true
 jobs:
   deploy:
     steps:
@@ -18,7 +21,7 @@ jobs:
           version: ${{ fromJSON(inputs.manifest)['MyAppAPIs']['MyAppAPIs'].version }}
           url: ${{ fromJSON(inputs.manifest)['MyAppAPIs']['MyAppAPIs'].url }}
           digest: ${{ fromJSON(inputs.manifest)['MyAppAPIs']['MyAppAPIs'].digest }}
-          target-environment: pre-prod
+          target-environment: ${{ inputs.environment }}
           name: MyAppAPIs
       - name: Deploy MyAppFE
         kind: deploy
@@ -39,37 +42,4 @@ jobs:
           url: ${{ fromJSON(inputs.manifest)['MyAppBE']['MyAppBE'].url }}
           digest: ${{ fromJSON(inputs.manifest)['MyAppBE']['MyAppBE'].digest }}
           target-environment: pre-prod
-          name: MyAppBE
-  prod:
-    needs: pre-prod
-    steps:
-      - name: Deploy MyAppAPIs
-        kind: deploy
-        if: ${{ fromJSON(inputs.manifest)['MyAppAPIs']['MyAppAPIs'].deploy }}
-        uses: cloudbees-io/register-deployed-artifact@v1
-        with:
-          version: ${{ fromJSON(inputs.manifest)['MyAppAPIs']['MyAppAPIs'].version }}
-          url: ${{ fromJSON(inputs.manifest)['MyAppAPIs']['MyAppAPIs'].url }}
-          digest: ${{ fromJSON(inputs.manifest)['MyAppAPIs']['MyAppAPIs'].digest }}
-          target-environment: prod
-          name: MyAppAPIs
-      - name: Deploy MyAppFE
-        kind: deploy
-        if: ${{ fromJSON(inputs.manifest)['MyAppFE']['MyAppFE'].deploy }}
-        uses: cloudbees-io/register-deployed-artifact@v1
-        with:
-          version: ${{ fromJSON(inputs.manifest)['MyAppFE']['MyAppFE'].version }}
-          url: ${{ fromJSON(inputs.manifest)['MyAppFE']['MyAppFE'].url }}
-          digest: ${{ fromJSON(inputs.manifest)['MyAppFE']['MyAppFE'].digest }}
-          target-environment: prod
-          name: MyAppFE
-      - name: Deploy MyAppBE
-        kind: deploy
-        if: ${{ fromJSON(inputs.manifest)['MyAppBE']['MyAppBE'].deploy }}
-        uses: cloudbees-io/register-deployed-artifact@v1
-        with:
-          version: ${{ fromJSON(inputs.manifest)['MyAppBE']['MyAppBE'].version }}
-          url: ${{ fromJSON(inputs.manifest)['MyAppBE']['MyAppBE'].url }}
-          digest: ${{ fromJSON(inputs.manifest)['MyAppBE']['MyAppBE'].digest }}
-          target-environment: prod
           name: MyAppBE

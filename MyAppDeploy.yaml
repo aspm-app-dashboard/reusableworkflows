@@ -14,12 +14,6 @@ on:
       environment:
         type: string
         required: true
-      url:
-        type: string
-        required: false
-      digest:
-        type: string
-        required: false
 jobs:
   deploy:
     steps:
@@ -28,5 +22,5 @@ jobs:
         with:
           name: "${{ inputs.artifactName }}"
           version: "${{ inputs.artifactVersion }}"
-          url: "docker.io/MyApp/${{ inputs.artifactName }}:${{ inputs.artifactVersion }}"
+          url: "docker.io/MyApp/${{ inputs.artifactName }}:${{ inputs.artifactVersion }}" # Remove this once Action updated
           target-environment: "${{ inputs.environment }}"

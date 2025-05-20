@@ -16,6 +16,7 @@ on:
         required: true
 jobs:
   deploy:
+    environment: ${{ inputs.environment }}
     steps:
       - name: Inform system that an artifact version was deployed
         uses: cloudbees-io/register-deployed-artifact@greg_env_playground # return to v1 once Action released
@@ -23,4 +24,4 @@ jobs:
           name: "${{ inputs.artifactName }}"
           version: "${{ inputs.artifactVersion }}"
           url: "docker.io/MyApp/${{ inputs.artifactName }}:${{ inputs.artifactVersion }}" # Remove this once Action updated
-          target-environment: "${{ inputs.environment }}"
+          #target-environment: "${{ inputs.environment }}"

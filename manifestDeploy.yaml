@@ -13,33 +13,23 @@ on:
 jobs:
   deploy:
     steps:
-      - name: Deploy MyAppAPIs
+      - name: Deploy hackers
         kind: deploy
-        if: ${{ fromJSON(inputs.manifest)['MyAppAPIs']['MyAppAPIs'].deploy }}
+        if: ${{ fromJSON(inputs.manifest)['hackers']['hackers'].deploy }}
         uses: cloudbees-io/register-deployed-artifact@v1
         with:
-          version: ${{ fromJSON(inputs.manifest)['MyAppAPIs']['MyAppAPIs'].version }}
-          url: ${{ fromJSON(inputs.manifest)['MyAppAPIs']['MyAppAPIs'].url }}
-          digest: ${{ fromJSON(inputs.manifest)['MyAppAPIs']['MyAppAPIs'].digest }}
+          version: ${{ fromJSON(inputs.manifest)['hackers']['hackers'].version }}
+          url: ${{ fromJSON(inputs.manifest)['hackers']['hackers'].url }}
+          digest: ${{ fromJSON(inputs.manifest)['hackers']['hackers'].digest }}
           target-environment: ${{ inputs.environment }}
-          name: MyAppAPIs
-      - name: Deploy MyAppFE
+          name: hackers
+      - name: Deploy hackers-api-test
         kind: deploy
-        if: ${{ fromJSON(inputs.manifest)['MyAppFE']['MyAppFE'].deploy }}
+        if: ${{ fromJSON(inputs.manifest)['hackers-api-test']['hackers-api-test'].deploy }}
         uses: cloudbees-io/register-deployed-artifact@v1
         with:
-          version: ${{ fromJSON(inputs.manifest)['MyAppFE']['MyAppFE'].version }}
-          url: ${{ fromJSON(inputs.manifest)['MyAppFE']['MyAppFE'].url }}
-          digest: ${{ fromJSON(inputs.manifest)['MyAppFE']['MyAppFE'].digest }}
-          target-environment: pre-prod
-          name: MyAppFE
-      - name: Deploy MyAppBE
-        kind: deploy
-        if: ${{ fromJSON(inputs.manifest)['MyAppBE']['MyAppBE'].deploy }}
-        uses: cloudbees-io/register-deployed-artifact@v1
-        with:
-          version: ${{ fromJSON(inputs.manifest)['MyAppBE']['MyAppBE'].version }}
-          url: ${{ fromJSON(inputs.manifest)['MyAppBE']['MyAppBE'].url }}
-          digest: ${{ fromJSON(inputs.manifest)['MyAppBE']['MyAppBE'].digest }}
-          target-environment: pre-prod
-          name: MyAppBE
+          version: ${{ fromJSON(inputs.manifest)['hackers-api-test']['hackers-api-test'].version }}
+          url: ${{ fromJSON(inputs.manifest)['hackers-api-test']['hackers-api-test'].url }}
+          digest: ${{ fromJSON(inputs.manifest)['hackers-api-test']['hackers-api-test'].digest }}
+          target-environment: ${{ inputs.environment }}
+          name: hackers-api-test
